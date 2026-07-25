@@ -15,7 +15,7 @@ export function useTurbineConfig() {
             setError(undefined);
             try {
                 // fetchConfig SDK function creates a new url that requires the full path
-                const res = await fetch('api/config')
+                const res = await fetch('/api/config')
                 if (!res.ok) throw new Error(`Config fetch failed: ${res.status}`);
                 const config: TurbineConfig = await res.json();
                 setTurbineConfig(config);
