@@ -14,7 +14,6 @@ function ConnectWallet() {
 }
 
 function App() {
-
   return (
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>

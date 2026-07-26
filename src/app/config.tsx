@@ -5,19 +5,12 @@ import { injected, metaMask, safe, walletConnect } from 'wagmi/connectors'
 const projectId = 'e37d4536b2880138a1e54395da26e243'
 
 export const turbineApiUrl: string =
-    import.meta.env.VITE_TURBINE_API_URL || "/api";
-
+  import.meta.env.VITE_TURBINE_API_URL || '/api'
 
 export const wagmiConfig = createConfig({
   chains: [mainnet],
-  connectors: [
-    injected(),
-    walletConnect({ projectId }),
-    metaMask(),
-    safe(),
-  ],
+  connectors: [injected(), walletConnect({ projectId }), metaMask(), safe()],
   transports: {
-    [mainnet.id]: http()
+    [mainnet.id]: http(),
   },
 })
-

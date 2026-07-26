@@ -1,46 +1,46 @@
-import { useEffect, useState } from 'react';
-import type { TurbineConfig } from '@shared/services/turbine/types';
-import type { TurbineError } from '@shared/services/turbine/errors';
+import { useEffect, useState } from 'react'
+import type { TurbineConfig } from '@shared/services/turbine/types'
+import type { TurbineError } from '@shared/services/turbine/errors'
 
 export function useTurbineConfig() {
-    const [turbineConfig, setTurbineConfig] = useState<TurbineConfig | undefined>(undefined);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<TurbineError | undefined>(undefined);
-    const [retryCount, setRetryCount] = useState<number>(0);
+  const [turbineConfig, setTurbineConfig] = useState<TurbineConfig | undefined>(
+    undefined,
+  )
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<TurbineError | undefined>(undefined)
+  const [retryCount, setRetryCount] = useState<number>(0)
 
+  useEffect(() => {
+    const loadConfig = async () => {
+      setIsLoading(true)
+      setError(undefined)
+      try {
+        // fetchConfig SDK function creates a new url that requires the full path
+        const res = await fetch('/api/config')
+        if (!res.ok) throw new Error(`Config fetch failed: ${res.status}`)
+        const config: TurbineConfig = await res.json()
+        setTurbineConfig(config)
 
-    useEffect(() => {
-        const loadConfig = async () => {
-            setIsLoading(true);
-            setError(undefined);
-            try {
-                // fetchConfig SDK function creates a new url that requires the full path
-                const res = await fetch('/api/config')
-                if (!res.ok) throw new Error(`Config fetch failed: ${res.status}`);
-                const config: TurbineConfig = await res.json();
-                setTurbineConfig(config);
+        setRetryCount(0)
+      } catch (error: any) {
+        setError(error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    loadConfig()
+  }, [retryCount])
 
-                setRetryCount(0);
+  useEffect(() => {
+    if (!error) return
 
-            } catch (error: any) {
-                setError(error)
-            } finally {
-                setIsLoading(false);
-            }
-        }
-        loadConfig();
-    }, [retryCount]);
+    const retryTimer = setTimeout(() => {
+      console.log(`Error loading turbine config`)
+      setRetryCount((prev) => prev + 1)
+    }, 30000)
 
-    useEffect(() => {
-        if (!error) return;
+    return () => clearTimeout(retryTimer)
+  }, [error])
 
-        const retryTimer = setTimeout(() => {
-            console.log(`Error loading turbine config`)
-            setRetryCount((prev) => prev + 1);
-        }, 30000)
-
-        return () => clearTimeout(retryTimer);
-    }, [error])
-
-    return { turbineConfig, isLoading, error };
+  return { turbineConfig, isLoading, error }
 }
