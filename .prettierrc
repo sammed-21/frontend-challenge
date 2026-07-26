@@ -6,5 +6,16 @@
     "printWidth": 80,
     "arrowParens": "always",
     "bracketSpacing": true,
-    "endOfLine": "lf"
+    "endOfLine": "lf",
+    "plugins": ["@trivago/prettier-plugin-sort-imports"],
+    "importOrder": [
+      "^react",
+      "<THIRD_PARTY_MODULES>",
+      "^@shared/(.*)$",
+      "^@features/(.*)$",
+      "^@app/(.*)$",
+      "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
 }
