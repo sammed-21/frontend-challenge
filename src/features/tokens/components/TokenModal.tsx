@@ -1,25 +1,25 @@
-import { useTurbineConfig } from '../../hooks/useTurbineConfig';
+import { useTurbineConfig } from '../../../shared/hooks/useTurbineConfig';
 import { Box, Spinner } from '@chakra-ui/react';
 
-export function TokenModal () {
+export function TokenModal() {
     const { turbineConfig, isLoading, error } = useTurbineConfig();
     const tokens = turbineConfig?.tokens;
     return (
         <>
             {isLoading === false && turbineConfig!.tokens !== undefined ? (
                 <Box>
-                    
+
                     {tokens!.map((token) => (
                         <Box key={token.address}>{token.symbol}</Box>
                     ))}
 
                 </Box>
-            ) : error? (
+            ) : error ? (
                 <p>Error loading tokens</p>
             ) :
-            (
-                <Spinner></Spinner>
-            )}
+                (
+                    <Spinner></Spinner>
+                )}
         </>
     )
 }
