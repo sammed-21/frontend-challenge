@@ -1,9 +1,9 @@
 import { WagmiProvider, useAccount } from 'wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { wagmiConfig } from '../config'
-import { Account } from '../features/wallet/components/Account'
-import { WalletOptions } from '../features/wallet/components/WalletOptions'
-import { TokenModal } from '../features/tokens/components/TokenModal'
+import { wagmiConfig } from './config'
+import { Account } from '@features/wallet/components/Account'
+import { WalletOptions } from '@features/wallet/components/WalletOptions'
+import { TokenModal } from '@features/tokens/components/TokenModal'
 
 const queryClient = new QueryClient()
 
