@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import type { TurbineConfig } from '@shared/services/turbine/types'
+
 import type { TurbineError } from '@shared/services/turbine/errors'
+import type { TurbineConfig } from '@shared/services/turbine/types'
 
 export function useTurbineConfig() {
   const [turbineConfig, setTurbineConfig] = useState<TurbineConfig | undefined>(

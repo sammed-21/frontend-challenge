@@ -1,5 +1,6 @@
-import { useTurbineConfig } from '@shared/hooks/useTurbineConfig'
 import { Box, Spinner } from '@chakra-ui/react'
+
+import { useTurbineConfig } from '@shared/hooks/useTurbineConfig'
 
 export function TokenModal() {
   const { turbineConfig, isLoading, error } = useTurbineConfig()

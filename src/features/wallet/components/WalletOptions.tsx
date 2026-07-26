@@ -1,7 +1,8 @@
+import * as React from 'react'
+
 import { Button, Stack } from '@chakra-ui/react'
 import { useConnect } from 'wagmi'
 import type { Connector } from 'wagmi'
-import * as React from 'react'
 
 export function WalletOptions() {
   const { connectors, connect } = useConnect()
