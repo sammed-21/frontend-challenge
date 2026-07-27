@@ -3,6 +3,7 @@ import { useState } from 'react'
 import {
   Avatar,
   Box,
+  Flex,
   HStack,
   Input,
   Modal,
@@ -37,53 +38,103 @@ export function TokenModal({ isOpen, onClose, onSelect }: TokenModalProps) {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="sm" scrollBehavior="inside">
-      <ModalOverlay />
-      <ModalContent bg="gray.800" borderColor="gray.700">
-        <ModalHeader>Select Token</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody pb={6}>
+      <ModalOverlay bg="blackAlpha.700" backdropFilter="blur(8px)" />
+      <ModalContent
+        bg="surface.card"
+        border="1px solid"
+        borderColor="surface.border"
+        borderRadius="corner.lg"
+        boxShadow="0px 4px 72px 0px rgba(0, 0, 0, 0.50)"
+      >
+        <ModalHeader
+          fontSize="16px"
+          fontWeight={500}
+          color="text.primary"
+          pb={3}
+        >
+          Select token
+        </ModalHeader>
+        <ModalCloseButton color="text.secondary" />
+        <ModalBody pb={4} px={4}>
           <Input
             placeholder="Search by name or address"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             mb={4}
-            bg="gray.900"
-            border="none"
+            bg="surface.input"
+            border="1px solid"
+            borderColor="transparent"
+            borderRadius="corner.sm"
+            fontSize="14px"
+            color="text.primary"
+            _placeholder={{ color: 'text.disabled' }}
+            _focus={{
+              borderColor: 'surface.borderHover',
+              boxShadow: 'none',
+            }}
+            _hover={{ borderColor: 'surface.borderHover' }}
           />
-          <VStack spacing={1} align="stretch" maxH="400px" overflowY="auto">
+          <VStack
+            spacing={0}
+            align="stretch"
+            maxH="400px"
+            overflowY="auto"
+            mx={-2}
+            sx={{
+              '&::-webkit-scrollbar': { width: '4px' },
+              '&::-webkit-scrollbar-track': { bg: 'transparent' },
+              '&::-webkit-scrollbar-thumb': {
+                bg: 'surface.border',
+                borderRadius: 'corner.full',
+              },
+            }}
+          >
             {filtered.map((token) => (
               <HStack
                 key={token.address}
                 px={3}
-                py={2}
-                borderRadius="md"
+                py="10px"
+                borderRadius="corner.sm"
                 cursor="pointer"
-                _hover={{ bg: 'gray.700' }}
+                transition="background 0.15s"
+                _hover={{ bg: 'surface.input' }}
                 onClick={() => {
                   onSelect(token)
                   onClose()
                   setSearch('')
                 }}
+                spacing={3}
               >
                 {token.icon ? (
-                  <Avatar size="sm" src={token.icon} name={token.symbol} />
+                  <Avatar
+                    size="sm"
+                    src={token.icon}
+                    name={token.symbol}
+                    bg="surface.input"
+                  />
                 ) : (
-                  <Avatar size="sm" name={token.symbol} bg="gray.600" />
+                  <Avatar size="sm" name={token.symbol} bg="surface.input" />
                 )}
                 <Box>
-                  <Text fontWeight="bold" fontSize="sm">
+                  <Text fontWeight={600} fontSize="14px" color="text.primary">
                     {token.symbol}
                   </Text>
-                  <Text fontSize="xs" color="gray.400">
+                  <Text fontSize="12px" color="text.secondary">
                     {token.address.slice(0, 6)}...{token.address.slice(-4)}
                   </Text>
                 </Box>
               </HStack>
             ))}
             {filtered.length === 0 && (
-              <Text color="gray.500" textAlign="center" py={4}>
+              <Flex
+                justify="center"
+                align="center"
+                py={8}
+                color="text.secondary"
+                fontSize="14px"
+              >
                 No tokens found
-              </Text>
+              </Flex>
             )}
           </VStack>
         </ModalBody>

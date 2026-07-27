@@ -1,7 +1,8 @@
+import { Box, Flex, Heading } from '@chakra-ui/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, useAccount } from 'wagmi'
 
-import { TokenModal } from '@features/tokens/components/TokenModal'
+import { SwapForm } from '@features/swap/components/SwapForm'
 import { TokenProvider } from '@features/tokens/providers/TokenProvider'
 import { Account } from '@features/wallet/components/Account'
 import { WalletOptions } from '@features/wallet/components/WalletOptions'
@@ -21,9 +22,26 @@ function App() {
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
         <TokenProvider>
-          <h1>AcquaFi</h1>
-          <ConnectWallet />
-          <TokenModal />
+          <Flex direction="column" align="center" minH="100vh" pt={6} px={4}>
+            <Flex
+              justify="space-between"
+              align="center"
+              w="full"
+              maxW="520px"
+              mb={10}
+            >
+              <Heading
+                size="md"
+                fontWeight={600}
+                letterSpacing="-0.02em"
+                color="text.primary"
+              >
+                AquaFi
+              </Heading>
+              <ConnectWallet />
+            </Flex>
+            <SwapForm />
+          </Flex>
         </TokenProvider>
       </QueryClientProvider>
     </WagmiProvider>

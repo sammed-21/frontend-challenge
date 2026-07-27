@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Button, Stack } from '@chakra-ui/react'
+import { Button, Text, VStack } from '@chakra-ui/react'
 import { useConnect } from 'wagmi'
 import type { Connector } from 'wagmi'
 
@@ -8,7 +8,7 @@ export function WalletOptions() {
   const { connectors, connect } = useConnect()
 
   return (
-    <Stack direction="row">
+    <VStack spacing={2}>
       {connectors.map((connector) => (
         <WalletOption
           key={connector.uid}
@@ -16,7 +16,7 @@ export function WalletOptions() {
           onClick={() => connect({ connector })}
         />
       ))}
-    </Stack>
+    </VStack>
   )
 }
 
@@ -38,10 +38,26 @@ function WalletOption({
 
   return (
     <Button
-      disabled={!ready}
+      isDisabled={!ready}
       onClick={onClick}
-      variant="outline"
-      colorScheme="blue"
+      h="36px"
+      px={4}
+      borderRadius="corner.sm"
+      bg="surface.input"
+      border="1px solid"
+      borderColor="surface.border"
+      color="text.primary"
+      fontWeight={500}
+      fontSize="13px"
+      _hover={{
+        bg: 'surface.inputHover',
+        borderColor: 'surface.borderHover',
+      }}
+      _disabled={{
+        opacity: 0.4,
+        cursor: 'not-allowed',
+      }}
+      transition="all 0.15s ease-out"
     >
       {connector.name}
     </Button>
