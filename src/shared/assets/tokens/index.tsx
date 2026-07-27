@@ -142,6 +142,7 @@ export const TOKEN_ICONS: Record<string, string> = {
   '0xc944e90c64b2c07662a292be6244bdf05cda44a7': grt, // GRT
   '0x767fe9edc9e0df98e07454847909b5e959d7ca0e': ilv, // ILV
   '0x579cea1889991f68acc35ff5c3dd0621ff29b0c9': iq, // IQ
+  '0x8236a87084f8b84306f72007f36f2618a5634494': lbtc, 
   '0x5a98fcbea516cf06857215779fd812ca3bef1b32': ldo, // LDO
   '0x514910771af9ca656af840dff83e8264ecf986ca': link, // LINK
   '0x58b6a8a3302369daec383334672404ee733ab239': lpt, // LPT

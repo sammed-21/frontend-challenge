@@ -4,7 +4,8 @@ import type { TurbineTokenClass } from '@shared/services/turbine/types'
 
 export type Token = {
   address: Address
-  symbol: string
-  decimals: number
   class: TurbineTokenClass
+  decimals: number
+  icon?: string
+  symbol: string
 }
