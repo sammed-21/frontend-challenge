@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, useAccount } from 'wagmi'
 
 import { TokenModal } from '@features/tokens/components/TokenModal'
+import { TokenProvider } from '@features/tokens/providers/TokenProvider'
 import { Account } from '@features/wallet/components/Account'
 import { WalletOptions } from '@features/wallet/components/WalletOptions'
 
@@ -19,9 +20,11 @@ function App() {
   return (
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
-        <h1>AcquaFi</h1>
-        <ConnectWallet />
-        <TokenModal />
+        <TokenProvider>
+          <h1>AcquaFi</h1>
+          <ConnectWallet />
+          <TokenModal />
+        </TokenProvider>
       </QueryClientProvider>
     </WagmiProvider>
   )
