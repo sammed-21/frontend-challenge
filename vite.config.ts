@@ -17,13 +17,7 @@ export default defineConfig(({command, mode}) => {
       }
     },
     server: {
-      // proxy server to bypass cors
-      proxy: {
-        '/api': {
-          target: 'https://staging-api.turbine.exchange',
-          changeOrigin: true,
-        }
-      }
+      port: 5173,
     }
   }
 })

@@ -27,7 +27,7 @@ interface TokenModalProps {
 }
 
 export function TokenModal({ isOpen, onClose, onSelect }: TokenModalProps) {
-  const tokens = useTokens()
+  const { tokens } = useTokens()
   const [search, setSearch] = useState('')
 
   const filtered = tokens.filter(

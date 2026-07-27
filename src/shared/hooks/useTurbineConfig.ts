@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import type { TurbineError } from '@shared/services/turbine/errors'
 import type { TurbineConfig } from '@shared/services/turbine/types'
 
+import { turbineApiUrl } from '@app/config'
+
 export function useTurbineConfig() {
   const [turbineConfig, setTurbineConfig] = useState<TurbineConfig | undefined>(
     undefined,
@@ -16,8 +18,7 @@ export function useTurbineConfig() {
       setIsLoading(true)
       setError(undefined)
       try {
-        // fetchConfig SDK function creates a new url that requires the full path
-        const res = await fetch('/api/config')
+        const res = await fetch(`${turbineApiUrl}/config`)
         if (!res.ok) throw new Error(`Config fetch failed: ${res.status}`)
         const config: TurbineConfig = await res.json()
         setTurbineConfig(config)

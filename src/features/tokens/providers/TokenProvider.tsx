@@ -1,20 +1,28 @@
-import { createContext, useContext } from 'react'
+import { type ReactNode, createContext, useContext } from 'react'
 
 import { useTurbineConfig } from '@shared/hooks/useTurbineConfig'
 import type { Token } from '@shared/types'
 
 import { mapToken } from '../services/tokenMapper'
 
-const TokenContext = createContext<Token[]>([])
+interface TokenContextValue {
+  tokens: Token[]
+  isLoading: boolean
+}
 
-export function TokenProvider({ children }: { children: React.ReactNode }) {
-  const { turbineConfig } = useTurbineConfig()
-  const tokens = turbineConfig?.tokens
+const TokenContext = createContext<TokenContextValue>({
+  tokens: [],
+  isLoading: true,
+})
 
-  const mappedTokens = mapToken(tokens ?? [])
+export function TokenProvider({ children }: { children: ReactNode }) {
+  const { turbineConfig, isLoading } = useTurbineConfig()
+
+  const turbineTokens = turbineConfig?.tokens ?? []
+  const tokens = mapToken(turbineTokens)
 
   return (
-    <TokenContext.Provider value={mappedTokens}>
+    <TokenContext.Provider value={{ tokens, isLoading }}>
       {children}
     </TokenContext.Provider>
   )
