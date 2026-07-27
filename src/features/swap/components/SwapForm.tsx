@@ -16,6 +16,7 @@ import type { Token } from '@shared/types'
 import { TokenModal } from '@features/tokens/components/TokenModal'
 
 import { AmountInput } from './AmountInput'
+import { SpreadSelector } from './SpreadSelector'
 import { TokenSelectButton } from './TokenSelectButton'
 
 type ModalTarget = 'sell' | 'buy' | null
@@ -159,6 +160,8 @@ export function SwapForm() {
             />
           </Flex>
         </Box>
+
+        <SpreadSelector />
 
         {/* Submit */}
         <Button
