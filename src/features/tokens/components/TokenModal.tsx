@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import {
   Avatar,
@@ -29,12 +29,22 @@ interface TokenModalProps {
 export function TokenModal({ isOpen, onClose, onSelect }: TokenModalProps) {
   const { tokens } = useTokens()
   const [search, setSearch] = useState('')
+  const [filtered, setFiltered] = useState<Token[]>([])
 
-  const filtered = tokens.filter(
-    (token) =>
-      token.symbol.toLowerCase().includes(search.toLowerCase()) ||
-      token.address.toLowerCase().includes(search.toLowerCase()),
-  )
+  useEffect(() => {
+    if (!search.trim()) {
+      setFiltered(tokens)
+    } else {
+      const query = search.toLowerCase()
+      setFiltered(
+        tokens.filter(
+          (token) =>
+            token.symbol.toLowerCase().includes(query) ||
+            token.address.toLowerCase().includes(query),
+        ),
+      )
+    }
+  }, [search, tokens])
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="sm" scrollBehavior="inside">
