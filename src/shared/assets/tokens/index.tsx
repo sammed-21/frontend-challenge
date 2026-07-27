@@ -1,0 +1,211 @@
+import token_1inch from './1inch.png'
+import aave from './aave.png'
+import aevo from './aevo.png'
+import alcx from './alcx.png'
+import amp from './amp.png'
+import anime from './anime.png'
+import ape from './ape.png'
+import api3 from './api3.png'
+import arb from './arb.png'
+import ath from './ath.png'
+import aztec from './aztec.png'
+import bal from './bal.png'
+import bat from './bat.png'
+import beam from './beam.png'
+import bnt from './bnt.png'
+import comp from './comp.png'
+import cow from './cow.png'
+import cpool from './cpool.png'
+import cro from './cro.png'
+import crv from './crv.png'
+import cvx from './cvx.png'
+import dai from './dai.png'
+import dydx from './dydx.png'
+import eden from './eden.png'
+import eigen from './eigen.png'
+import ena from './ena.png'
+import ens from './ens.png'
+import eth from './eth.png'
+import ethfi from './ethfi.png'
+import eul from './eul.png'
+import fet from './fet.png'
+import floki from './floki.png'
+import fluid from './fluid.png'
+import frax from './frax.png'
+import gno from './gno.png'
+import grt from './grt.png'
+import ilv from './ilv.png'
+import iq from './iq.png'
+import lbtc from './lbtc.png'
+import ldo from './ldo.png'
+import link from './link.png'
+import lpt from './lpt.png'
+import lqty from './lqty.png'
+import lsk from './lsk.png'
+import mask from './mask.png'
+import metis from './metis.png'
+import mnt from './mnt.png'
+import moca from './moca.png'
+import mog from './mog.png'
+import morpho from './morpho.png'
+import nexo from './nexo.png'
+import nmr from './nmr.png'
+import ogn from './ogn.png'
+import ondo from './ondo.png'
+import order from './order.png'
+import paxg from './paxg.png'
+import pendle from './pendle.png'
+import pepe from './pepe.png'
+import perp from './perp.png'
+import pol from './pol.png'
+import prime from './prime.png'
+import prompt from './prompt.png'
+import pyusd from './pyusd.png'
+import qnt from './qnt.png'
+import rez from './rez.png'
+import rlusd from './rlusd.png'
+import rpl from './rpl.png'
+import rsr from './rsr.png'
+import safe from './safe.png'
+import sand from './sand.png'
+import sei from './sei.png'
+import shib from './shib.png'
+import sky from './sky.png'
+import snx from './snx.png'
+import sol from './sol.png'
+import spk from './spk.png'
+import spx from './spx.png'
+import ssv from './ssv.png'
+import stg from './stg.png'
+import storj from './storj.png'
+import strk from './strk.png'
+import superToken from './super.png'
+import sushi from './sushi.png'
+import syrup from './syrup.png'
+import t from './t.png'
+import trac from './trac.png'
+import uma from './uma.png'
+import uni from './uni.png'
+import usd1 from './usd1.png'
+import usdc from './usdc.png'
+import usde from './usde.png'
+import usds from './usds.png'
+import usdt from './usdt.png'
+import usual from './usual.png'
+import virtualToken from './virtual.png'
+import wbtc from './wbtc.png'
+import weth from './weth.png'
+import wld from './wld.png'
+import wlfi from './wlfi.png'
+import woo from './woo.png'
+import xaut from './xaut.png'
+import yfi from './yfi.png'
+import zro from './zro.png'
+import zrx from './zrx.png'
+
+export const TOKEN_ICONS: Record<string, string> = {
+  '0x0000000000000000000000000000000000000000': eth, // ETH
+  '0x111111111117dc0aa78b770fa6a738034120c302': token_1inch, // 1INCH
+  '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9': aave, // AAVE
+  '0xb528edbef013aff855ac3c50b381f253af13b997': aevo, // AEVO
+  '0xdbdb4d16eda451d0503b854cf79d55697f90c8df': alcx, // ALCX
+  '0xff20817765cb7f73d4bde2e66e067e58d11095c2': amp, // AMP
+  '0x4dc26fc5854e7648a064a4abd590bbe71724c277': anime, // ANIME
+  '0x4d224452801aced8b2f0aebe155379bb5d594381': ape, // APE
+  '0x0b38210ea11411557c13457d4da7dc6ea731b88a': api3, // API3
+  '0xb50721bcf8d664c30412cfbc6cf7a15145234ad1': arb, // ARB
+  '0xbe0ed4138121ecfc5c0e56b40517da27e6c5226b': ath, // ATH
+  '0xa27ec0006e59f245217ff08cd52a7e8b169e62d2': aztec, // AZTEC
+  '0xba100000625a3754423978a60c9317c58a424e3d': bal, // BAL
+  '0x0d8775f648430679a709e98d2b0cb6250d2887ef': bat, // BAT
+  '0x62d0a8458ed7719fdaf978fe5929c6d342b0bfce': beam, // BEAM
+  '0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c': bnt, // BNT
+  '0xc00e94cb662c3520282e6f5717214004a7f26888': comp, // COMP
+  '0xdef1ca1fb7fbcdc777520aa7f396b4e015f497ab': cow, // COW
+  '0x66761fa41377003622aee3c7675fc7b5c1c2fac5': cpool, // CPOOL
+  '0xa0b73e1ff0b80914ab6fe0444e65848c4c34450b': cro, // CRO
+  '0xd533a949740bb3306d119cc777fa900ba034cd52': crv, // CRV
+  '0x4e3fbd56cd56c3e72c1403e103b45db9da5b9d2b': cvx, // CVX
+  '0x6b175474e89094c44da98b954eedeac495271d0f': dai, // DAI
+  '0x92d6c1e31e14520e676a687f0a93788b716beff5': dydx, // DYDX
+  '0x24a3d725c37a8d1a66eb87f0e5d07fe67c120035': eden, // EDEN
+  '0xec53bf9167f50cdeb3ae105f56099aaab9061f83': eigen, // EIGEN
+  '0x57e114b691db790c35207b2e685d4a43181e6061': ena, // ENA
+  '0xc18360217d8f7ab5e7c516566761ea12ce7f9d72': ens, // ENS
+  '0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb': ethfi, // ETHFI
+  '0xd9fcd98c322942075a5c3860693e9f4f03aae07b': eul, // EUL
+  '0xaea46a60368a7bd060eec7df8cba43b7ef41ad85': fet, // FET
+  '0xcf0c122c6b73ff809c693db761e7baebe62b6a2e': floki, // FLOKI
+  '0x6f40d4a6237c257fff2db00fa0510deeecd303eb': fluid, // FLUID
+  '0x853d955acef822db058eb8505911ed77f175b99e': frax, // FRAX
+  '0x6810e776880c02933d47db1b9fc05908e5386b96': gno, // GNO
+  '0xc944e90c64b2c07662a292be6244bdf05cda44a7': grt, // GRT
+  '0x767fe9edc9e0df98e07454847909b5e959d7ca0e': ilv, // ILV
+  '0x579cea1889991f68acc35ff5c3dd0621ff29b0c9': iq, // IQ
+  '0x8236a87084f8b84306f72007f36f2618a5634494': lbtc,
+  '0x5a98fcbea516cf06857215779fd812ca3bef1b32': ldo, // LDO
+  '0x514910771af9ca656af840dff83e8264ecf986ca': link, // LINK
+  '0x58b6a8a3302369daec383334672404ee733ab239': lpt, // LPT
+  '0x6dea81c8171d0ba574754ef6f8b412f2ed88c54d': lqty, // LQTY
+  '0x6033f7f88332b8db6ad452b7c6d5bb643990ae3f': lsk, // LSK
+  '0x69af81e73a73b40adf4f3d4223cd9b1ece623074': mask, // MASK
+  '0x3c3a81e81dc49a522a592e7622a7e711c06bf354': mnt, // MNT
+  '0xf944e35f95e819e752f3ccb5faf40957d311e8c5': moca, // MOCA
+  '0x58d97b57bb95320f9a05dc918aef65434969c2b2': morpho, // MORPHO
+  '0x9e32b13ce7f2e80a01932b42553652e053d6ed8e': metis, // Metis
+  '0xaaee1a9723aadb7afa2810263653a34ba2c21c7a': mog, // Mog
+  '0xb62132e35a6c13ee1ee0f84dc5d40bad8d815206': nexo, // NEXO
+  '0x1776e1f26f98b1a5df9cd347953a26dd3cb46671': nmr, // NMR
+  '0x8207c1ffc5b6804f6024322ccf34f29c3541ae26': ogn, // OGN
+  '0xfaba6f8e4a5e8ab82f62fe7c39859fa577269be3': ondo, // ONDO
+  '0xabd4c63d2616a5201454168269031355f4764337': order, // ORDER
+  '0x45804880de22913dafe09f4980848ece6ecbaf78': paxg, // PAXG
+  '0x808507121b80c02388fad14726482e061b8da827': pendle, // PENDLE
+  '0x6982508145454ce325ddbe47a25d4ec3d2311933': pepe, // PEPE
+  '0xbc396689893d065f41bc2c6ecbee5e0085233447': perp, // PERP
+  '0x455e53cbb86018ac2b8092fdcd39d8444affc3f6': pol, // POL
+  '0xb23d80f5fefcddaa212212f028021b41ded428cf': prime, // PRIME
+  '0x28d38df637db75533bd3f71426f3410a82041544': prompt, // PROMPT
+  '0x6c3ea9036406852006290770bedfcaba0e23a0e8': pyusd, // PYUSD
+  '0x4a220e6096b25eadb88358cb44068a3248254675': qnt, // QNT
+  '0x3b50805453023a91a8bf641e279401a0b23fa6f9': rez, // REZ
+  '0x8292bb45bf1ee4d140127049757c2e0ff06317ed': rlusd, // RLUSD
+  '0xd33526068d116ce69f19a9ee46f0bd304f21a51f': rpl, // RPL
+  '0x320623b8e4ff03373931769a31fc52a4e78b5d70': rsr, // RSR
+  '0x5afe3855358e112b5647b952709e6165e1c1eeee': safe, // SAFE
+  '0x3845badade8e6dff049820680d1f14bd3903a5d0': sand, // SAND
+  '0xbdf43ecadc5cef51b7d1772f722e40596bc1788b': sei, // SEI
+  '0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce': shib, // SHIB
+  '0x56072c95faa701256059aa122697b133aded9279': sky, // SKY
+  '0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f': snx, // SNX
+  '0xd31a59c85ae9d8edefec411d448f90841571b89c': sol, // SOL
+  '0xc20059e0317de91738d13af027dfc4a50781b066': spk, // SPK
+  '0xe0f63a424a4439cbe457d80e4f4b51ad25b2c56c': spx, // SPX
+  '0x9d65ff81a3c488d585bbfb0bfe3c7707c7917f54': ssv, // SSV
+  '0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6': stg, // STG
+  '0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac': storj, // STORJ
+  '0xca14007eff0db1f8135f4c25b34de49ab0d42766': strk, // STRK
+  '0xe53ec727dbdeb9e2d5456c3be40cff031ab40a55': superToken, // SUPER
+  '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2': sushi, // SUSHI
+  '0x643c4e15d7d62ad0abec4a9bd4b001aa3ef52d66': syrup, // SYRUP
+  '0xcdf7028ceab81fa0c6971208e83fa7872994bee5': t, // T
+  '0xaa7a9ca87d3694b5755f213b5d04094b8d0f0a6f': trac, // TRAC
+  '0x04fa0d235c4abf4bcf4787af4cf447de572ef828': uma, // UMA
+  '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984': uni, // UNI
+  '0x8d0d000ee44948fc98c9b98a4fa4921476f08b0d': usd1, // USD1
+  '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': usdc, // USDC
+  '0xdc035d45d973e3ec169d2276ddab16f1e407384f': usds, // USDS
+  '0xdac17f958d2ee523a2206206994597c13d831ec7': usdt, // USDT
+  '0x4c9edd5852cd905f086c759e8383e09bff1e68b3': usde, // USDe
+  '0xc4441c2be5d8fa8126822b9929ca0b81ea0de38e': usual, // USUAL
+  '0x44ff8620b8ca30902395a7bd3f2407e1a091bf73': virtualToken, // VIRTUAL
+  '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599': wbtc, // WBTC
+  '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2': weth, // WETH
+  '0x163f8c2467924be0ae7b5347228cabf260318753': wld, // WLD
+  '0xda5e1988097297dcdc1f90d4dfe7909e847cbef6': wlfi, // WLFI
+  '0x4691937a7508860f876c9c0a2a617e7d9e945d4b': woo, // WOO
+  '0x68749665ff8d2d112fa859aa293f07a622782f38': xaut, // XAUt
+  '0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e': yfi, // YFI
+  '0x6985884c4392d348587b19cb9eaaf157f13271cd': zro, // ZRO
+  '0xe41d2489571d322189246dafa5ebde1f4699f498': zrx, // ZRX
+}
