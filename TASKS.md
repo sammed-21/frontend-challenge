@@ -48,7 +48,7 @@ One test is failing. Some test files are empty skeletons. Fix what's broken and 
 
 ## DOCKER-001: Production-ready Docker build
 
-The current Dockerfile works but is not production-ready. Improve it.
+The current Dockerfile has issues. Make it work and make it production-ready.
 
 ---
 

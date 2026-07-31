@@ -1,5 +1,3 @@
-src/assets/abi
-src/assets/lotties
 node_modules
 dist
 mock-server/node_modules

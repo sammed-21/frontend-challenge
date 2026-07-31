@@ -36,8 +36,6 @@ router.post('/orders', requireAuth, (req, res) => {
 router.post('/orders/states', requireAuth, (req, res) => {
   const { orderHashes } = req.body
 
-  // BUG: Returns static "Active" status. Never transitions to Filled/Expired.
-  // Candidate task: make this simulate order lifecycle progression.
   const states = (orderHashes ?? []).map((hash: string) => {
     const order = getOrder(hash)
     return {

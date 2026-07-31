@@ -1,8 +1,5 @@
 import { describe, expect, it } from 'vitest'
 
-// Utility functions — test these exist in shared/utils/ or similar
-// Candidate may move them during restructuring
-
 function formatAmount(value: string, maxDecimals = 6): string {
   if (!value || value === '0') return '0'
   const num = parseFloat(value)
