@@ -26,15 +26,17 @@ router.post('/quote', (req, res) => {
   const estimatedOutput = (sellAmountNum * rate).toFixed(6)
   const estimatedOutputUsd = sellAmountNum * sellPrice
 
-  // ammSpreadHbp: hundredths of basis points. 950 = 9.5 bps = 0.095%
   const ammSpreadHbp = 800 + Math.floor(Math.random() * 400)
 
-  res.json({
-    ammSpreadHbp,
-    midPriceUsd: sellPrice,
-    estimatedOutput,
-    estimatedOutputUsd,
-  })
+  const delay = 200 + Math.floor(Math.random() * 800)
+  setTimeout(() => {
+    res.json({
+      ammSpreadHbp,
+      midPriceUsd: sellPrice,
+      estimatedOutput,
+      estimatedOutputUsd,
+    })
+  }, delay)
 })
 
 export default router

@@ -18,7 +18,7 @@ function requireAuth(req: Request, res: Response, next: NextFunction) {
   next()
 }
 
-router.post('/orders', requireAuth, (req, res) => {
+router.post('/add_order', requireAuth, (req, res) => {
   const hash = generateOrderHash()
 
   addOrder({
@@ -33,7 +33,7 @@ router.post('/orders', requireAuth, (req, res) => {
   res.json({ orderHash: hash })
 })
 
-router.post('/orders/states', requireAuth, (req, res) => {
+router.post('/order_states', requireAuth, (req, res) => {
   const { orderHashes } = req.body
 
   const states = (orderHashes ?? []).map((hash: string) => {

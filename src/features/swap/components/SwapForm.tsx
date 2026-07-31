@@ -15,6 +15,7 @@ import type { Token } from '@shared/types'
 
 import { TokenModal } from '@features/tokens/components/TokenModal'
 
+import { useQuote } from '../hooks/useQuote'
 import { AmountInput } from './AmountInput'
 import { SpreadSelector } from './SpreadSelector'
 import { TokenSelectButton } from './TokenSelectButton'
@@ -28,6 +29,14 @@ export function SwapForm() {
   const [buyToken, setBuyToken] = useState<Token | null>(null)
   const [sellAmount, setSellAmount] = useState('')
   const [modalTarget, setModalTarget] = useState<ModalTarget>(null)
+
+  const { quote, isLoading: quoteLoading } = useQuote(
+    sellToken?.address,
+    buyToken?.address,
+    sellAmount,
+  )
+
+  const buyAmount = quote ? quote.estimatedOutput : ''
 
   function handleTokenSelect(token: Token) {
     if (modalTarget === 'sell') {
@@ -148,7 +157,7 @@ export function SwapForm() {
         >
           <Flex justify="space-between" align="center">
             <AmountInput
-              value=""
+              value={quoteLoading ? '...' : buyAmount}
               onChange={() => {}}
               label="You receive"
               readOnly

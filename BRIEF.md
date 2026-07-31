@@ -16,6 +16,11 @@ There are more tasks here than you'll finish in the time available. That's inten
 4. **How you think about quality.** Tests, CI, deployment — what's your bar?
 5. **How you use AI.** We expect you'll use it. We want to see that you understand and can improve on what it produces.
 
+## Requirements
+
+- The swap form must be **keyboard-navigable**. A user should be able to complete a swap using only the keyboard (tab between fields, enter to submit, escape to close modals).
+- UI elements must meet **basic contrast requirements** against the dark background.
+
 ## Tasks
 
 See [TASKS.md](./TASKS.md) for the full list. Pick what matters most, do it well, and explain your prioritization in `DECISIONS.md`.
