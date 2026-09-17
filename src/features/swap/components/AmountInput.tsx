@@ -1,14 +1,5 @@
 import { Box, Input, Text } from '@chakra-ui/react'
 
-export function toOnchainAmount(value: string, decimals: number): bigint {
-  const parsed = parseFloat(value)
-  return BigInt(Math.round(parsed * 10 ** decimals))
-}
-
-export function fromOnchainAmount(value: bigint, decimals: number): string {
-  return (Number(value) / 10 ** decimals).toString()
-}
-
 interface AmountInputProps {
   value: string
   onChange: (value: string) => void
