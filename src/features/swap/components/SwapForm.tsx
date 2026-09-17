@@ -16,6 +16,7 @@ import type { Token } from '@shared/types'
 import { TokenModal } from '@features/tokens/components/TokenModal'
 
 import { useQuote } from '../hooks/useQuote'
+import { isValidAmount } from '../utils/amount'
 import { AmountInput } from './AmountInput'
 import { SpreadSelector } from './SpreadSelector'
 import { TokenSelectButton } from './TokenSelectButton'
@@ -35,7 +36,6 @@ export function SwapForm() {
     buyToken?.address,
     sellAmount,
   )
-
   const buyAmount = quote ? quote.estimatedOutput : ''
 
   function handleTokenSelect(token: Token) {
@@ -75,7 +75,11 @@ export function SwapForm() {
   }
 
   const isSubmitDisabled =
-    !isConnected || !sellToken || !buyToken || !sellAmount
+    !isConnected ||
+    !sellToken ||
+    !buyToken ||
+    !sellAmount ||
+    !isValidAmount(sellAmount)
 
   return (
     <Box
