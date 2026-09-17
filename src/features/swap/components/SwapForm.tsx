@@ -15,6 +15,8 @@ import type { Token } from '@shared/types'
 
 import { TokenModal } from '@features/tokens/components/TokenModal'
 
+import { useTurbine } from '@shared/providers/TurbineProvider'
+
 import { useQuote } from '../hooks/useQuote'
 import { isValidAmount } from '../utils/amount'
 import { AmountInput } from './AmountInput'
@@ -25,6 +27,12 @@ type ModalTarget = 'sell' | 'buy' | null
 
 export function SwapForm() {
   const { isConnected } = useAccount()
+  const {
+    isAuthenticated: isTurbineAuthenticated,
+    isLoading: isTurbineLoading,
+    error: turbineError,
+    retryAuth,
+  } = useTurbine()
 
   const [sellToken, setSellToken] = useState<Token | null>(null)
   const [buyToken, setBuyToken] = useState<Token | null>(null)
@@ -69,17 +77,31 @@ export function SwapForm() {
 
   function getButtonText() {
     if (!isConnected) return 'Connect Wallet'
+    if (turbineError) return 'Retry Authentication'
+    if (isTurbineLoading) return 'Authenticating...'
+    if (!isTurbineAuthenticated) return 'Authenticating...'
     if (!sellToken || !buyToken) return 'Select Tokens'
     if (!sellAmount) return 'Enter Amount'
     return 'Swap'
   }
 
-  const isSubmitDisabled =
-    !isConnected ||
-    !sellToken ||
-    !buyToken ||
-    !sellAmount ||
-    !isValidAmount(sellAmount)
+  function handleButtonClick() {
+    if (turbineError) {
+      retryAuth()
+      return
+    }
+    handleSubmit()
+  }
+
+  const isSubmitDisabled = turbineError
+    ? !isConnected
+    : !isConnected ||
+      isTurbineLoading ||
+      !isTurbineAuthenticated ||
+      !sellToken ||
+      !buyToken ||
+      !sellAmount ||
+      !isValidAmount(sellAmount)
 
   return (
     <Box
@@ -178,7 +200,7 @@ export function SwapForm() {
 
         {/* Submit */}
         <Button
-          onClick={handleSubmit}
+          onClick={handleButtonClick}
           isDisabled={isSubmitDisabled}
           h="56px"
           w="full"
@@ -200,6 +222,12 @@ export function SwapForm() {
         >
           {getButtonText()}
         </Button>
+
+        {turbineError && (
+          <Text fontSize="12px" color="brand.folly" textAlign="center" role="alert">
+            {turbineError} Click above to retry.
+          </Text>
+        )}
       </VStack>
 
       <TokenModal

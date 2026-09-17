@@ -4,6 +4,7 @@ const mockClient = {
   authenticate: vi.fn().mockResolvedValue(undefined),
   addOrder: vi.fn(),
   getOrderStates: vi.fn(),
+  getAuthStatus: vi.fn().mockResolvedValue({ authenticated: true }),
 }
 
 describe('useTurbineAuth', () => {

@@ -1,6 +1,7 @@
 import {
   type ReactNode,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -16,6 +17,7 @@ interface TurbineContextValue {
   isAuthenticated: boolean
   isLoading: boolean
   error: string | null
+  retryAuth: () => void
 }
 
 const TurbineContext = createContext<TurbineContextValue>({
@@ -23,6 +25,7 @@ const TurbineContext = createContext<TurbineContextValue>({
   isAuthenticated: false,
   isLoading: false,
   error: null,
+  retryAuth: () => {},
 })
 
 export function TurbineProvider({ children }: { children: ReactNode }) {
@@ -33,6 +36,7 @@ export function TurbineProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [retryToken, setRetryToken] = useState(0)
 
   // Create client + authenticate when wallet connects
   useEffect(() => {
@@ -53,7 +57,11 @@ export function TurbineProvider({ children }: { children: ReactNode }) {
           publicClient!,
           turbineApiUrl,
         )
-        await turbineClient.authenticate()
+
+        // ensureAuthenticated() reuses an existing, still-valid session
+        // (checks /me first) instead of forcing a wallet signature on every
+        // mount, and retries authentication once if the session is gone.
+        await turbineClient.ensureAuthenticated()
 
         if (!cancelled) {
           setClient(turbineClient)
@@ -61,6 +69,8 @@ export function TurbineProvider({ children }: { children: ReactNode }) {
         }
       } catch (err) {
         if (!cancelled) {
+          setClient(null)
+          setIsAuthenticated(false)
           setError(err instanceof Error ? err.message : 'Authentication failed')
         }
       } finally {
@@ -74,11 +84,30 @@ export function TurbineProvider({ children }: { children: ReactNode }) {
     return () => {
       cancelled = true
     }
-  }, [walletClient, publicClient])
+  }, [walletClient, publicClient, retryToken])
+
+  // The mock/real session can expire server-side (e.g. idle tab) without the
+  // client ever finding out. Revalidate when the tab regains focus so the UI
+  // doesn't keep claiming the user is authenticated when they no longer are;
+  // the next action that needs auth will re-prompt via ensureAuthenticated().
+  useEffect(() => {
+    if (!client) return
+
+    function revalidate() {
+      client!.getAuthStatus().then((status) => {
+        setIsAuthenticated(status.authenticated)
+      })
+    }
+
+    window.addEventListener('focus', revalidate)
+    return () => window.removeEventListener('focus', revalidate)
+  }, [client])
+
+  const retryAuth = useCallback(() => setRetryToken((n) => n + 1), [])
 
   return (
     <TurbineContext.Provider
-      value={{ client, isAuthenticated, isLoading, error }}
+      value={{ client, isAuthenticated, isLoading, error, retryAuth }}
     >
       {children}
     </TurbineContext.Provider>

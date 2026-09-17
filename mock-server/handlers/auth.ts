@@ -3,6 +3,7 @@ import { Router } from 'express'
 import {
   createNonce,
   createSession,
+  deleteSession,
   generateSessionId,
   getSession,
 } from '../state.js'
@@ -43,7 +44,9 @@ router.post('/verify', (req, res) => {
   res.json({ ok: true })
 })
 
-router.get('/auth/status', (req, res) => {
+// The SDK's getAuthStatus()/ensureAuthenticated() call this exact endpoint
+// name ("me"), not "auth/status" — see turbine-sdk's turbineClient.ts.
+router.get('/me', (req, res) => {
   const sessionId = req.cookies?.turbine_session
   const session = sessionId ? getSession(sessionId) : undefined
 
@@ -52,6 +55,15 @@ router.get('/auth/status', (req, res) => {
   } else {
     res.status(401).json({ authenticated: false })
   }
+})
+
+router.post('/logout', (req, res) => {
+  const sessionId = req.cookies?.turbine_session
+  if (sessionId) {
+    deleteSession(sessionId)
+  }
+  res.clearCookie('turbine_session')
+  res.json({ ok: true })
 })
 
 export default router

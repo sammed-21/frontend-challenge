@@ -46,6 +46,10 @@ export function getSession(sessionId: string): Session | undefined {
   return session
 }
 
+export function deleteSession(sessionId: string) {
+  sessions.delete(sessionId)
+}
+
 export function addOrder(order: MockOrder) {
   orders.set(order.hash, order)
 }
